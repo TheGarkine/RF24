@@ -39,6 +39,7 @@ RF24 radio(7, 8);
 
 const uint8_t num_channels = 126;
 uint8_t values[num_channels];
+const uint8_t noiseAddress[][2] = { {0x55, 0x55}, {0xAA, 0xAA} };
 
 //
 // Setup
@@ -59,10 +60,15 @@ void setup(void) {
 
   radio.begin();
   radio.setAutoAck(false);
+  radio.disableCRC();
+  radio.setAddressWidth(2);
+  radio.openReadingPipe(0, noiseAddress[0]);
+  radio.openReadingPipe(1, noiseAddress[1]);
 
   // Get into standby mode
   radio.startListening();
   radio.stopListening();
+  radio.flush_rx();
   radio.printDetails();
 
   //delay(1000);
@@ -129,6 +135,7 @@ void loop(void) {
         // Did we get a carrier?
         if (radio.testCarrier()) {
           ++values[i];
+          radio.flush_rx();
         }
       }
     }
