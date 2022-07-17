@@ -147,7 +147,7 @@ int main(int argc, char** argv)
                 radio.stopListening();
 
                 // Did we get a signal?
-                if (foundSignal || radio.testRPD()) {
+                if (foundSignal || radio.testRPD() || radio.available()) {
                     ++values[i];
                     radio.flush_rx(); // discard packets of noise
                 }
