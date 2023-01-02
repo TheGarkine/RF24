@@ -61,7 +61,7 @@ jobs:
           tar xf doxygen.tar
           cd doxygen-$DOXYGEN_VERSION
           sudo make install
-      - run: cd docs $$ doxygen
+      - run: cd docs && doxygen
       - name: Save doxygen docs as artifact
         uses: actions/upload-artifact@v3
         with:
