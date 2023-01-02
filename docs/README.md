@@ -8,10 +8,16 @@ The markdown files (\*.md) in this docs folder contain relative hyperlinks. Any 
 
 ## Building the docs
 
-Install Doxygen (v1.9.5 or newer) and run the following command from the repo's root folder:
+Navigate to the repo's docs folder:
 
 ```shell
-doxygen docs/Doxyfile
+cd docs
+```
+
+Install Doxygen (v1.9.5 or newer) and run the following command from the repo's docs folder:
+
+```shell
+doxygen
 ```
 
 The Doxygen HTML output is now in docs/html. The Doxygen XML output in docs/sphinx/xml can be optionally used to generate Sphinx output.
@@ -24,10 +30,10 @@ To build the Sphinx docs based on Doxygen's XML output, first install the necess
 python -m pip install docs/sphinx/requirements.txt
 ```
 
-Now build the Sphinx docs (after building the Doxygen output) from the repo's root folder:
+Now build the Sphinx docs (after building the Doxygen output) from the repo's docs folder:
 
 ```shell
-sphinx-build docs/sphinx docs/_build/html
+sphinx-build sphinx _build/html
 ```
 
 The Sphinx HTML output now exists in docs/_build/html.
